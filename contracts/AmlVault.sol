@@ -2,7 +2,7 @@
 pragma solidity ^0.7.4; // See "Solidity version" of README.md
 
 import "@openzeppelin/contracts/utils/Address.sol";
-import "@openzeppelin/contracts//math/SafeMath.sol";
+import "@openzeppelin/contracts/math/SafeMath.sol";
 
 import "./IETHAtomicOracle.sol";
 import "./AddressLibrary.sol";
