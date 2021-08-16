@@ -9,15 +9,15 @@ import "./AddressLibrary.sol";
 import "./StatusLibrary.sol";
 
 /**
-* @title An Example Client Smart Contract: a simple vault
-* @author Ville Sundell <development@solarius.fi>
-* @dev This is an example implementation of a client smart contract.
-*
-* This is just to demonstrate Oracle <-> Client communication.
-* The business logic presented here is not viable.
-*
-* THIS IS SIMPLIFIED INTENTIONALLY, AND NOT USABLE IN PRODUCTION AS-IS!
-*/
+ * @title An Example Client Smart Contract: a simple vault
+ * @author Ville Sundell <development@solarius.fi>
+ * @dev This is an example implementation of a client smart contract.
+ *
+ * This is just to demonstrate Oracle <-> Client communication.
+ * The business logic presented here is not viable.
+ *
+ * THIS IS SIMPLIFIED INTENTIONALLY, AND NOT USABLE IN PRODUCTION AS-IS!
+ */
 contract AmlVault {
     using Address for address payable;
     using SafeMath for uint256; // Applicable only for uint256
@@ -32,7 +32,7 @@ contract AmlVault {
         _oracle = oracle_;
     }
 
-    receive() external payable {
+    function receive() external payable {
         _balances[msg.sender] = _balances[msg.sender].add(msg.value);
         _verifyUser(msg.sender);
     }
@@ -48,6 +48,6 @@ contract AmlVault {
         string memory target = user.toString();
         uint256 fee = _oracle.getFee(address(this));
         bytes32 result = _oracle.getStatusForETH{value: fee}(target);
-        require(!result.isFlag(StatusLibrary.sanctioned_country), "ExampleVault: User is flagged as sanctioned");
+        require(!result.isFlag(StatusLibrary.SANCTIONED_FLAG), "ExampleVault: User is flagged as sanctioned");
     }
 }
