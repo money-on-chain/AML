@@ -20,6 +20,7 @@
     "@nomiclabs/hardhat-truffle5": "^2.0.0",
     "@nomiclabs/hardhat-web3": "^2.0.0",
     "@openzeppelin/contracts": "3.4.0",
+    "@openzeppelin/test-helpers": "^0.5.13",
     "@thinkanddev/solidoc": "^3.0.0",
     "@truffle/contract": "^4.2.23",
     "dotenv": "^10.0.0",
