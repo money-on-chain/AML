@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.7.4;
 
-import "@openzeppelin/contracts/utils/Address.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 import "./IETHAtomicOracle.sol";
 import "./IMoC.sol";
@@ -20,6 +19,14 @@ contract AmlVault {
      * @dev Interface of MoC
      */
     IMoC public moc;
+    /**
+     * @dev address of DoC
+     */
+    address docAddress;
+    /**
+     * @dev Interface of ERC20
+     */
+    IERC20 public ierc20;
     /**
      * @dev default value mask of oracle
      */
@@ -60,11 +67,13 @@ contract AmlVault {
     constructor(
         address oracle_,
         address moc_,
+        address doc_,
         bytes32 defaultOracleMask_,
         bytes32 clearFlagOracleMask_
     ) {
         oracle = IETHAtomicOracle(oracle_);
         moc = IMoC(moc_);
+        docAddress = doc_;
         guardian = msg.sender;
         defaultOracleMask = defaultOracleMask_;
         clearFlagOracleMask = clearFlagOracleMask_;
@@ -146,20 +155,28 @@ contract AmlVault {
     /**
      * remove it, only for POC
      */
-    function validateUser(address user) external payable returns (bool) {
+    function validateUser(address user) external payable {
         _verifyUser(user);
-        return true;
     }
 
     function mintDoc(uint256 btcToMint) external payable {
         _verifyUser(msg.sender);
-        return moc.mintDoc(btcToMint);
+        uint256 valueToMoC = msg.value - _getOracleFee(address(this));
+        moc.mintDoc{value: valueToMoC}(btcToMint);
+        uint256 balance = IERC20(docAddress).balanceOf(address(this));
+        // uint256 balance = ierc20.balanceOf(address(this));
+        IERC20(docAddress).transfer(msg.sender, balance);
+        // ierc20.transfer(msg.sender, balance);
     }
 
-    function redeemFreeDoc(uint256 docAmount) external payable {
-        _verifyUser(msg.sender);
-        return moc.redeemFreeDoc(docAmount);
-    }
+    // function redeemFreeDoc(uint256 docAmount) external payable {
+    //     _verifyUser(msg.sender);
+    //     // uint256 toTransfer = moc.redeemFreeDoc(docAmount);
+    //     moc.redeemFreeDoc(docAmount);
+    //     uint256 contractBalance = address(this).balance;
+    //     msg.sender.transfer(contractBalance);
+    //     //transfer
+    // }
 
     function _getOracleFee(address user) internal returns (uint256) {
         string memory target = user.toString();
@@ -168,7 +185,7 @@ contract AmlVault {
 
     function _verifyUser(address user) internal {
         string memory target = user.toString();
-        uint256 fee = _getOracleFee(user);
+        uint256 fee = _getOracleFee(address(this));
         bytes32 result = oracle.getStatusForETH{value: fee}(target);
         require(((result == defaultOracleMask) || (result == clearFlagOracleMask)), "AmlVault: User is sanctioned");
     }

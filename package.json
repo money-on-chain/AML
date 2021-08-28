@@ -1,11 +1,13 @@
 {
-  "name": "@thinkanddev/multicall-rsk",
+  "name": "@thinkanddev/aml-poc",
   "version": "1.0.1",
-  "description": "Taringa NFT contracts",
+  "description": "PROOF OF CONCEPT USING THE ATOMIC ORACLE OF COINFIRM ",
   "author": "Pedro Prete",
   "license": "MIT",
   "keywords": [
-    "multicall",
+    "amlt",
+    "oracle",
+    "moc",
     "smart contracts",
     "rsk"
   ],
