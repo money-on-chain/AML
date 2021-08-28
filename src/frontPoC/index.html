@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>AML Vault POC</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<script type="module" src="src/dispatcher.js"></script>
+	<!-- <script type="module" src="src/main.js"></script> -->
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+			<a href="index.html" class="logo"><strong>AML</strong> <span>PoC</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="https://github.com/money-on-chain/AML">Repository</a></li>
+				<!-- <li><a href="generic.html">Generic</a></li> -->
+				<!-- <li><a href="elements.html">Elements</a></li> -->
+			</ul>
+			<ul class="actions stacked">
+				<li><a href="#" class="button primary fit">Get Started</a></li>
+				<!-- <li><a href="#" class="button fit">Log In</a></li> -->
+			</ul>
+		</nav>
+
+		<!-- Banner -->
+		<section id="banner" class="major">
+			<div class="inner">
+				<header class="major">
+					<h1>Hi, wellcome to the AML PoC</h1>
+				</header>
+				<div class="content">
+					<p>This is a proof of concept for MoC using the atomic oracle of coinfirm</p>
+					<ul class="actions">
+						<li><a href="#contact" class="button next scrolly">Get Started</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Contact -->
+		<section id="contact">
+			<div class="inner">
+				<section>
+					<header class="major">
+						<h4>This PoC use a inyected provider</h4>
+					</header>
+					<form method="post" action="javascript:void(0)">
+						<div class="fields">
+							<div class="field half">
+								<label for="name">address to validate</label>
+								<input type="text" name="user" id="user" required="required" />
+							</div>
+							<div class="field half" style="padding-top:3.5em;">
+								<!-- <i class="far fa-check-circle"></i> -->
+								<!-- <div id="userOk" style="display: none;"> -->
+								<div id="userOk" style="display: none;">
+									<span class="icon solid alt fa-check-circle"></span>
+								</div>
+								<!-- <i class="fas fa-skull-crossbones"></i> -->
+								<div id="userFail" style="display: none;">
+									<span class="icon solid alt fa-skull-crossbones"></span>
+								</div>
+
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="Validate" class="primary" id="validateUser" /></li>
+						</ul>
+					</form>
+					<hr>
+					<form method="post" action="javascript:void(0)">
+						<div class="fields">
+							<div class="field half">
+								<label for="name">Mint DoC</label>
+								<input type="text" name="valueToMint" id="valueToMint" required="required" />
+							</div>
+							<div class="field half" style="padding-top:3.5em;">
+								<div id="mintOk" style="display: none;">
+									<span class="icon solid alt fa-check-circle"></span>
+								</div>
+								<div id="mintFail" style="display: none;">
+									<span class="icon solid alt fa-skull-crossbones"></span>
+								</div>
+
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="MINT" class="primary" id="mintDoc" /></li>
+						</ul>
+					</form>
+					<!-- <hr> -->
+					<!-- <form method="post" action="javascript:void(0)">
+						<div class="fields">
+							<div class="field half">
+								<label for="name">Redeem DoC</label>
+								<input type="text" name="valueToRedeem" id="valueToRedeem" required="required" />
+							</div>
+							<div class="field half" style="padding-top:3.5em;">
+								<div id="redeemOk" style="display: none;">
+									<span class="icon solid alt fa-check-circle"></span>
+								</div>
+								<div id="redeemFail" style="display: none;">
+									<span class="icon solid alt fa-skull-crossbones"></span>
+								</div>
+
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="submit" value="REDEEM" class="primary" id="mintDoc" /></li>
+						</ul>
+					</form> -->
+				</section>
+				<section class="split">
+			
+					<section>
+						<div class="contact-method">
+							<span class="icon brands alt fa-readme"></span>
+							<h3>Readme</h3>
+							<a href="https://github.com/money-on-chain/AML">https://github.com/money-on-chain/AML</a>
+						</div>
+					</section>
+					<section>
+						<div class="contact-method">
+							<span class="icon brands alt fa-github"></span>
+							<h3>Repository</h3>
+							<a href="https://github.com/money-on-chain/AML">https://github.com/money-on-chain/AML</a>
+						</div>
+					</section>
+					<section>
+						<div class="contact-method">
+							<span class="icon solid alt fa-file-contract"></span>
+							<h3>Smart Contract</h3>
+							<a style="font-size: 0.7em;"
+								href="https://explorer.testnet.rsk.co/address/0xdafaaa2b792d22a1d6f4af880644062f73183d7f">0xdafaaa2b792d22a1d6f4af880644062f73183d7f</a>
+						</div>
+					</section>
+
+				</section>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://thinkanddev.com/" style="border-bottom:none;"><img
+								class="white_logo desktop_logo"
+								src="https://thinkanddev.com/wp-content/uploads/2020/10/LOGOHEADER.png"
+								alt="Think &amp; Dev" title="Think &amp; Dev" width="80px"></a></li>
+					<li><a href="https://moneyonchain.com/" style="border-bottom:none;"><img id="image-142-11" alt=""
+								src="https://moneyonchain.com/wp-content/uploads/2021/07/logo_isotipo.svg"
+								class="ct-image" width="35px"></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; T&D</li>
+				</ul>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
