@@ -6,7 +6,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) { // Hardhat
   const moc = '0x01AD6f8E884ed4DDC089fA3efC075E9ba45C9039';
   const defaultFlag = '0x0000000000000000000000000000000000000000000000000000000000000000';
   const clearFlag = '0x0000000000000000000000000000000000000000000000000000000000000021';
-  const doc = '0x4512f4C1d984bbf8B7f7404EddFb1881cFA79EfD'
+  const doc = '0x489049c48151924c07f86aa1dc6cc3fea91ed963'
 
 
   const deployResult = await deploy('AmlVault', {

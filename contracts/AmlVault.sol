@@ -22,7 +22,7 @@ contract AmlVault {
     /**
      * @dev address of DoC
      */
-    address docAddress;
+    address public docAddress;
     /**
      * @dev Interface of ERC20
      */
@@ -51,6 +51,10 @@ contract AmlVault {
      * @dev Emitted when moc is changed
      */
     event NewMoC(address oldMoC, address newMoC);
+    /**
+     * @dev Emitted when moc is changed
+     */
+    event NewDoC(address oldDoc, address newDoc);
     /**
      * @dev Emitted when oracle is changed
      */
@@ -128,6 +132,19 @@ contract AmlVault {
         address oldMoC = address(moc);
         moc = IMoC(newMoC);
         emit NewMoC(oldMoC, address(moc));
+    }
+    /**
+     * @dev Set a new address of docAddress
+     * @param newDocAddress New address of docAddress.
+     */
+    function setDoc(address newDocAddress) public {
+        // Check caller = gaurdian
+        require(msg.sender == guardian, "AML: only guardian may set the Doc");
+        require(newDocAddress != address(0), "AML: address Doc can not be 0");
+        // Save current value, if any, for inclusion in log
+        address oldDocAddress = docAddress;
+        docAddress = newDocAddress;
+        emit NewDoC(oldDocAddress, docAddress);
     }
 
     /**
