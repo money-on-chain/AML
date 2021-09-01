@@ -172,18 +172,16 @@ contract AmlVault {
     /**
      * remove it, only for POC
      */
-    function validateUser(address user) external payable {
-        _verifyUser(user);
+    function validateUser(address user) external payable returns(bytes32) {
+        return _verifyUser(user);
     }
 
     function mintDoc(uint256 btcToMint) external payable {
-        _verifyUser(msg.sender);
-        uint256 valueToMoC = msg.value - _getOracleFee(address(this));
+        // _verifyUser(msg.sender);
+        uint256 valueToMoC = msg.value;//- _getOracleFee(address(this));
         moc.mintDoc{value: valueToMoC}(btcToMint);
-        uint256 balance = IERC20(docAddress).balanceOf(address(this));
-        // uint256 balance = ierc20.balanceOf(address(this));
-        IERC20(docAddress).transfer(msg.sender, balance);
-        // ierc20.transfer(msg.sender, balance);
+        // uint256 balance = IERC20(docAddress).balanceOf(address(this));
+        // IERC20(docAddress).transfer(msg.sender, balance);
     }
 
     // function redeemFreeDoc(uint256 docAmount) external payable {
@@ -200,10 +198,13 @@ contract AmlVault {
         return oracle.getFee(address(this));
     }
 
-    function _verifyUser(address user) internal {
+    function _verifyUser(address user) internal returns(bytes32) {
         string memory target = user.toString();
         uint256 fee = _getOracleFee(address(this));
         bytes32 result = oracle.getStatusForETH{value: fee}(target);
         require(((result == defaultOracleMask) || (result == clearFlagOracleMask)), "AmlVault: User is sanctioned");
+        return result;
     }
+
+    receive() external payable {}
 }
