@@ -1,4 +1,6 @@
-pragma solidity ^0.7.0;
+pragma solidity ^0.7.4;
+
+import "../IETHAtomicOracle.sol";
 
 contract MockETHAtomicOracle is IETHAtomicOracle {
     mapping(address => uint256) public _fees;
@@ -9,17 +11,15 @@ contract MockETHAtomicOracle is IETHAtomicOracle {
         _defaultFee = defaultFee_;
     }
 
-
-    function setFee(address addr, uint256 fee) external {
+    function setFee(address addr, uint256 fee) external override {
         _fees[addr] = fee;
     }
 
-
-    function setDefaultFee(uint256 defaultFee_) external {
+    function setDefaultFee(uint256 defaultFee_) external override {
         _defaultFee = defaultFee_;
     }
 
-    function withdrawFees() external {
+    function withdrawFees() external override {
         msg.sender.transfer(address(this).balance);
     }
 
@@ -27,14 +27,14 @@ contract MockETHAtomicOracle is IETHAtomicOracle {
         _status = status;
     }
 
-    function getStatusForETH(string calldata target) external payable returns (bytes32 status) {
+    function getStatusForETH(string calldata target) external payable override returns (bytes32 status) {
         require(bytes(target).length > 0, "Empty target");
         return _status;
     }
 
-    function getFee(address addr) external view returns (uint256 fee) {
-        fee = fees[addr];
-        if(fee == 0) {
+    function getFee(address addr) external view override returns (uint256 fee) {
+        fee = _fees[addr];
+        if (fee == 0) {
             fee = _defaultFee;
         }
         return fee;

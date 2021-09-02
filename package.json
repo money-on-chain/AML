@@ -1,17 +1,19 @@
 {
-  "name": "@thinkanddev/multicall-rsk",
+  "name": "@thinkanddev/aml-poc",
   "version": "1.0.1",
-  "description": "Taringa NFT contracts",
+  "description": "PROOF OF CONCEPT USING THE ATOMIC ORACLE OF COINFIRM ",
   "author": "Pedro Prete",
   "license": "MIT",
   "keywords": [
-    "multicall",
+    "amlt",
+    "oracle",
+    "moc",
     "smart contracts",
     "rsk"
   ],
   "scripts": {
     "lint": "solhint  \"contracts/**/*.sol\"",
-    "compile": "hardhat compile",
+    "compile": "hardhat compile && cp abi/* src/frontPoC/abi",
     "test": "hardhat test",
     "flatten": "hardhat flatten ./contracts/AMLT.sol > ./flatten/AMLT.sol",
     "deploy": "hardhat deploy --network"
@@ -20,6 +22,7 @@
     "@nomiclabs/hardhat-truffle5": "^2.0.0",
     "@nomiclabs/hardhat-web3": "^2.0.0",
     "@openzeppelin/contracts": "3.4.0",
+    "@openzeppelin/test-helpers": "^0.5.13",
     "@thinkanddev/solidoc": "^3.0.0",
     "@truffle/contract": "^4.2.23",
     "dotenv": "^10.0.0",
