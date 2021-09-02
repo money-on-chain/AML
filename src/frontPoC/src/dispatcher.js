@@ -15,7 +15,7 @@ function validateUser() {
     let user = document.getElementById('user').value;
     if (!user) return
     main.validateUser(user).then((validate) => {
-        console.log('VALIDATEEEE', validate)
+        console.log('validate address', validate)
         if (validate) {
             document.querySelector('#userOk').style.removeProperty('display');
         } else {
@@ -29,12 +29,12 @@ function mintDoc() {
     if (!amount) return
 
     main.mintDoc(amount).then((resultMint) => {
-        console.log('main', resultMint)
-        // if (validate) {
-        //     document.querySelector('#mintOk').style.removeProperty('display');
-        // } else {
-        //     document.querySelector('#mintFail').style.removeProperty('display');
-        // }
+        console.log('mint doc', resultMint)
+        if (resultMint) {
+            document.querySelector('#mintOk').style.removeProperty('display');
+        } else {
+            document.querySelector('#mintFail').style.removeProperty('display');
+        }
     });
 
 }
