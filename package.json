@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "lint": "solhint  \"contracts/**/*.sol\"",
-    "compile": "hardhat compile",
+    "compile": "hardhat compile && cp abi/* src/frontPoC/abi",
     "test": "hardhat test",
     "flatten": "hardhat flatten ./contracts/AMLT.sol > ./flatten/AMLT.sol",
     "deploy": "hardhat deploy --network"
