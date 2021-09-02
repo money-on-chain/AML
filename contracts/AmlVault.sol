@@ -87,7 +87,7 @@ contract AmlVault {
      * @dev Begins transfer of gaurdian rights. The newPendingGaurdian must call `_acceptAdmin` to finalize the transfer.
      * @param newPendingGuardian New pending gaurdian.
      */
-    function _setPendingAdmin(address newPendingGuardian) public {
+    function setPendingAdmin(address newPendingGuardian) public {
         // Check caller = gaurdian
         require(msg.sender == guardian, "AML: only guardian may set the address");
         require(newPendingGuardian != address(0), "AML: address admin can not be 0");
@@ -101,7 +101,7 @@ contract AmlVault {
     /**
      * @dev  Accepts transfer of gaurdian rights. msg.sender must be pendingGaurdian
      */
-    function _acceptAdmin() public {
+    function acceptAdmin() public {
         // Check caller is pendingGaurdian and pendingGaurdian ≠ address(0)
         require(msg.sender == pendingGuardian, "AML: only guardian may set the address");
         require(msg.sender != address(0), "AML: sender can not be 0");
@@ -181,19 +181,10 @@ contract AmlVault {
         uint256 valueToMoC = msg.value - _getOracleFee(address(this));
         moc.mintDoc{value: valueToMoC}(btcToMint);
         uint256 balance = IERC20(docAddress).balanceOf(address(this));
-        // uint256 balance = ierc20.balanceOf(address(this));
         IERC20(docAddress).transfer(msg.sender, balance);
-        // ierc20.transfer(msg.sender, balance);
     }
 
-    // function redeemFreeDoc(uint256 docAmount) external payable {
-    //     _verifyUser(msg.sender);
-    //     // uint256 toTransfer = moc.redeemFreeDoc(docAmount);
-    //     moc.redeemFreeDoc(docAmount);
-    //     uint256 contractBalance = address(this).balance;
-    //     msg.sender.transfer(contractBalance);
-    //     //transfer
-    // }
+    receive() external payable {}
 
     function _getOracleFee(address user) internal returns (uint256) {
         string memory target = user.toString();
