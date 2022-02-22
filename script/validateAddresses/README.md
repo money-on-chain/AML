@@ -10,14 +10,14 @@ Installation
 ------------
 To run the validator, pull the repository from GitHub and install its dependencies. You will need [yarn](https://yarnpkg.com/lang/en/docs/install/) or [npm](https://docs.npmjs.com/cli/install) installed.
 
-    git clone https://github.com/
-    cd liquidation
+    git clone https://github.com/money-on-chain/AML/
+    cd AML/script/validateAddresses/
     `yarn install` or `npm install`
 
 
 Configuration
 ------------
-You must configure the address source of the database to validate and the database to impact the results of the validations. This is in the [config](#)file
+You must configure the address source of the database to validate and the database to impact the results of the validations. This is in the [config](https://github.com/money-on-chain/AML/tree/scriptValidateUsers/script/validateAddresses/config) file
 
 ```javascript
 //DB config to impact validated address
