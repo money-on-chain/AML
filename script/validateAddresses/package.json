@@ -1,0 +1,17 @@
+{
+  "name": "validate-aml-offcchain-users",
+  "version": "1.0.0",
+  "description": "validate aml offchain users",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "fgregoribattista",
+  "license": "ISC",
+  "dependencies": {
+    "js-cache": "^1.0.3",
+    "mongodb": "^4.4.0",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
